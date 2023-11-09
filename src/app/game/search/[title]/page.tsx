@@ -20,7 +20,7 @@ async function getGames(title: string) {
   }
 }
 
-export default async function Search({ params: { title } }: Props) {
+export default async function Search({ params: { title }}: Props) {
   const games: GameProps[] = await getGames(title);
 
   return ( 
