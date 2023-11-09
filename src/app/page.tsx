@@ -5,17 +5,29 @@ import { ArrowRightSquare } from 'lucide-react';
 import Container from '@/components/Container'
 import { GameProps } from '@/utils/types/game';
 import MyInput from '@/components/MyInput';
+import GameCard from '@/components/GameCard';
 
 async function getDailyGame() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL_DAILY_GAME}`, { next: { revalidate: 60 * 5 }});
     return res.json();
   } catch(err) {
-    throw new Error("Erro ao buscar Daily Game")
+    throw new Error("Erro ao buscar o Jogo do Dia")
   }
 }
+
+async function getGames() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL_GAMES}`, { next: { revalidate: 60 * 5 }});
+    return res.json();
+  } catch(err) {
+    throw new Error("Erro ao buscar os Jogos")
+  }
+}
+
 export default async function Home() {
   const dailyGame: GameProps = await getDailyGame();
+  const games: GameProps[] = await getGames();
 
   return (
     <main className="w-full">
@@ -41,7 +53,7 @@ export default async function Home() {
                 quality={100}
                 priority
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw"
                 className='max-h-96 object-cover rounded-xl opacity-70 hover:opacity-100 transition-all duration-300'
               />
             </div>
@@ -50,6 +62,14 @@ export default async function Home() {
 
         <MyInput />
         
+        <h2 className='text-lg font-bold mt-8 mb-5'>Jogos para conhecer</h2>
+
+        <section className='grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+          {games.map((game) => (
+            <GameCard key={ game.id } data={game} />
+          ))}
+        </section>
+
       </Container>
     </main>
   )

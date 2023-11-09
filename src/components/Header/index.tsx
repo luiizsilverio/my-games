@@ -10,17 +10,14 @@ export default function Header() {
           <Link href="/">
             <div className="flex items-center gap-1 w-full">
               <Gamepad2 className="w-10 h-10 text-amber-600" />
-              <h1 className="text-3xl font-bold">
-                My
-                <span className="text-amber-600">
-                  Games
-                </span>
+              <h1 className="text-3xl font-bold">My
+                <span className="text-amber-600">Games</span>
               </h1>
             </div>
           </Link>
 
-          <Link href="/">Games</Link>
-          <Link href="/profile">Perfil</Link>
+          <Link href="/" className="hover:text-amber-600">Games</Link>
+          <Link href="/profile" className="hover:text-amber-600">Perfil</Link>
         </nav>
 
         <div className="hidden sm:flex">
