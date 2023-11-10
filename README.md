@@ -17,6 +17,7 @@ Possui apenas uma lista de jogos com opção de busca, porém muito útil para p
 
 
 ## 🚗 Iniciando a aplicação
+Renomeie o arquivo _.env.local-example_ para _.env.local_
 ```bash
 $ git clone https://github.com/luiizsilverio/my-games
 $ cd my-games
